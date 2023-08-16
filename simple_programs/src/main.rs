@@ -2,9 +2,35 @@ use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
 
-const MENU_OPTIONS: [&str; 4] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number"];
+const MENU_OPTIONS: [&str; 5] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics"];
 const TEMPERATURE_NAMES: [&str; 2] = ["Fahrenheit", "Celsius"];
 const TEMPERATURE_UNITS: [&str; 2] = ["F", "C"];
+const CHRISTMAS_CAROL_PARTS: [&str; 12] = [
+    "A partridge in a pear tree",
+    "Two turtles doves", "three french hens",
+    "The four calling birds",
+    "Five golden rings",
+    "Six geese a-laying",
+    "Seven swans a-swimming",
+    "Eight maids a-milking",
+    "Nine ladies dancing",
+    "Ten lords a-leaping",
+    "Eleven pipers piping",
+    "Twelve drummers drumming"];
+const NUMBERS_TEXT_FORM: [&str; 12] = [
+    "first",
+    "second",
+    "third",
+    "fourth",
+    "fifth",
+    "sixth",
+    "seventh",
+    "eighth",
+    "ninth",
+    "tenth",
+    "eleventh",
+    "twelfth"
+];
 
 fn main() {
     loop {
@@ -21,6 +47,8 @@ fn main() {
             convert_temperature();
         } else if choice == 3 {
             generate_fibonacci_number();
+        }else if choice == 4{
+            print_christmas_carol_lyrics();
         } else {
             println!("Invalid choice. Try again!")
         }
@@ -136,12 +164,12 @@ fn generate_fibonacci_number() {
     let mut b = 1;
     let result: i32;
 
-    if n == 1{
+    if n == 1 {
         result = a;
-    }else if n == 2{
+    } else if n == 2 {
         result = b;
-    }else{
-        for _ in 0..n-2{
+    } else {
+        for _ in 0..n - 2 {
             let temp = a;
             a = b;
             b = temp + b;
@@ -151,4 +179,25 @@ fn generate_fibonacci_number() {
     }
 
     println!("{n}-th Fibonacci number is {result}");
+}
+
+fn print_christmas_carol_lyrics() {
+    let mut lyrics = String::new();
+    let total_days = 12;
+
+    for day in 0..total_days {
+        lyrics = format!("{}On the {} day of Christmas, my true love sent to me\n", lyrics, NUMBERS_TEXT_FORM[day]);
+        let parts = CHRISTMAS_CAROL_PARTS[0..day + 1].iter().rev();
+
+        let mut index = 0;
+        for part in parts {
+            let extra = if day > 0 && index == day - 1 {", and"} else {""};
+            lyrics = format!("{lyrics}{part}{extra}\n");
+            index += 1;
+        }
+
+        lyrics = format!("{}\n", lyrics);
+    }
+
+    println!("{lyrics}");
 }
