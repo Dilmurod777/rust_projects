@@ -2,7 +2,7 @@ use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
 
-const MENU_OPTIONS: [&str; 3] = ["Exit", "Guess the number", "Convert temperature"];
+const MENU_OPTIONS: [&str; 4] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number"];
 const TEMPERATURE_NAMES: [&str; 2] = ["Fahrenheit", "Celsius"];
 const TEMPERATURE_UNITS: [&str; 2] = ["F", "C"];
 
@@ -10,7 +10,7 @@ fn main() {
     loop {
         println!("Choose the program:");
         show_menu();
-        let choice: i32 = get_numeric_input("Your choice:", true, 0, 3);
+        let choice: i32 = get_numeric_input("Your choice:", true, 0, MENU_OPTIONS.len() as i32);
 
         if choice == 0 {
             println!("Successfully exited. See you next time!");
@@ -19,6 +19,8 @@ fn main() {
             guess_number_game();
         } else if choice == 2 {
             convert_temperature();
+        } else if choice == 3 {
+            generate_fibonacci_number();
         } else {
             println!("Invalid choice. Try again!")
         }
@@ -126,4 +128,27 @@ fn convert_temperature() {
 
     let to_unit: &str = TEMPERATURE_UNITS[to_unit as usize];
     println!("Your converted value is {converted_value}{to_unit}")
+}
+
+fn generate_fibonacci_number() {
+    let n = get_numeric_input("Enter value for n (1-1000):", true, 1, 1001);
+    let mut a = 0;
+    let mut b = 1;
+    let result: i32;
+
+    if n == 1{
+        result = a;
+    }else if n == 2{
+        result = b;
+    }else{
+        for _ in 0..n-2{
+            let temp = a;
+            a = b;
+            b = temp + b;
+        }
+
+        result = b;
+    }
+
+    println!("{n}-th Fibonacci number is {result}");
 }
