@@ -2,7 +2,7 @@ use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
 
-const MENU_OPTIONS: [&str; 5] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics"];
+const MENU_OPTIONS: [&str; 6] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics", "Reverse string"];
 const TEMPERATURE_NAMES: [&str; 2] = ["Fahrenheit", "Celsius"];
 const TEMPERATURE_UNITS: [&str; 2] = ["F", "C"];
 const CHRISTMAS_CAROL_PARTS: [&str; 12] = [
@@ -47,8 +47,10 @@ fn main() {
             convert_temperature();
         } else if choice == 3 {
             generate_fibonacci_number();
-        }else if choice == 4{
+        } else if choice == 4 {
             print_christmas_carol_lyrics();
+        } else if choice == 5 {
+            reverse_input_str();
         } else {
             println!("Invalid choice. Try again!")
         }
@@ -191,7 +193,7 @@ fn print_christmas_carol_lyrics() {
 
         let mut index = 0;
         for part in parts {
-            let extra = if day > 0 && index == day - 1 {", and"} else {""};
+            let extra = if day > 0 && index == day - 1 { ", and" } else { "" };
             lyrics = format!("{lyrics}{part}{extra}\n");
             index += 1;
         }
@@ -200,4 +202,22 @@ fn print_christmas_carol_lyrics() {
     }
 
     println!("{lyrics}");
+}
+
+fn reverse_input_str(){
+    println!("Enter string:");
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Invalid input. Try again!");
+
+    let input = input.trim();
+
+    let mut output = String::new();
+
+    for i in input.chars().rev() {
+        output.push(i)
+    }
+
+    println!("Reverse of '{input}' is '{output}'.")
 }
