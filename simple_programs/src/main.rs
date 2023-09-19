@@ -2,7 +2,7 @@ use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
 
-const MENU_OPTIONS: [&str; 6] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics", "Reverse string"];
+const MENU_OPTIONS: [&str; 8] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics", "Reverse string", "Find median of integers", "Find mode of integers"];
 const TEMPERATURE_NAMES: [&str; 2] = ["Fahrenheit", "Celsius"];
 const TEMPERATURE_UNITS: [&str; 2] = ["F", "C"];
 const CHRISTMAS_CAROL_PARTS: [&str; 12] = [
@@ -51,6 +51,10 @@ fn main() {
             print_christmas_carol_lyrics();
         } else if choice == 5 {
             reverse_input_str();
+        } else if choice == 6 {
+            find_median_of_integers();
+        } else if choice == 7 {
+            find_mode_of_integers();
         } else {
             println!("Invalid choice. Try again!")
         }
@@ -204,7 +208,7 @@ fn print_christmas_carol_lyrics() {
     println!("{lyrics}");
 }
 
-fn reverse_input_str(){
+fn reverse_input_str() {
     println!("Enter string:");
     let mut input = String::new();
     io::stdin()
@@ -221,3 +225,11 @@ fn reverse_input_str(){
 
     println!("Reverse of '{input}' is '{output}'.")
 }
+
+fn find_median_of_integers() {
+    let n: u16;
+
+
+}
+
+fn find_mode_of_integers() {}
