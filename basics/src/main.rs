@@ -1,22 +1,23 @@
-use crate::garden::vegetables::Asparagus;
-
-pub mod garden;
-
-fn reverse(input: &str) -> String {
-    let mut output = String::new();
-    let l = input.len();
-
-    for i in input.chars().rev() {
-        output.push(i)
-    }
-
-    return output;
-}
+use std::collections::HashMap;
 
 fn main() {
-    let plant = Asparagus {};
-    println!("I'm growing {:?}", plant);
+    let mut scores = HashMap::new();
 
-    let r = reverse("子猫");
-    println!("{r}");
+    scores.insert(String::from("blue"), 10);
+    scores.insert(String::from("yellow"), 50);
+    println!("{:?}", scores);
+
+    let score = scores.get(&String::from("blue")).copied().unwrap_or_default();
+    println!("score for blue: {score}");
+
+    for (k, v) in &scores {
+        println!("key: {k}, value: {v}");
+    }
+
+    scores.insert(String::from("blue"), 11);
+    println!("scores: {:?}", scores);
+
+    scores.entry(String::from("red")).or_insert(100);
+    scores.entry(String::from("red")).or_insert(200);
+    println!("scores: {:?}", scores);
 }
