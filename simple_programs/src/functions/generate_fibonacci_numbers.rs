@@ -1,7 +1,7 @@
 use crate::input;
 
 pub fn run() {
-    let n = input::get_numeric_input("Enter value for n (1-1000):", true, 1, 1001);
+    let n = input::get_single_integer("Enter value for n (1-1000):", true, 1, 1001);
     let mut a = 0;
     let mut b = 1;
     let result: i32;

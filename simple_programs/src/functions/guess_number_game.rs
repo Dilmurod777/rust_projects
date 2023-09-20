@@ -13,7 +13,7 @@ pub fn run() {
 
     let mut trials = 0;
     loop {
-        let guess: i32 = input::get_numeric_input("Your guess:", true, min, max);
+        let guess: i32 = input::get_single_integer("Your guess:", true, min, max);
         trials += 1;
 
         match guess.cmp(&secret_number) {

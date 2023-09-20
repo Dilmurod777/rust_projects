@@ -16,7 +16,7 @@ fn main() {
     loop {
         println!("Choose the program:");
         show_menu();
-        let choice: i32 = input::get_numeric_input("Your choice:", true, 0, MENU_OPTIONS.len() as i32);
+        let choice: i32 = input::get_single_integer("Your choice:", true, 0, MENU_OPTIONS.len() as i32);
 
         if choice == 0 {
             println!("Successfully exited. See you next time!");

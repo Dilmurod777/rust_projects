@@ -1,6 +1,6 @@
 use std::io;
 
-pub fn get_numeric_input(text: &str, has_bounds: bool, min: i32, max: i32) -> i32 {
+pub fn get_single_integer(text: &str, has_bounds: bool, min: i32, max: i32) -> i32 {
     loop {
         println!("{text}");
         let mut input = String::new();
@@ -30,4 +30,33 @@ pub fn get_numeric_input(text: &str, has_bounds: bool, min: i32, max: i32) -> i3
 
         return input;
     }
+}
+
+pub fn get_vec_of_integers(text: &str, sort: bool) -> Vec<i32> {
+    let mut numbers: Vec<i32> = Vec::new();
+
+    println!("{text}");
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Invalid input. Try again!");
+
+    let values = input.trim().split(' ');
+
+    for value in values {
+        let number: i32 = match value.parse() {
+            Ok(num) => num,
+            Err(_) => {
+                continue;
+            }
+        };
+
+        numbers.push(number);
+    }
+
+    if sort {
+        numbers.sort();
+    }
+
+    return numbers;
 }

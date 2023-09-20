@@ -13,14 +13,14 @@ fn show_temperature_units() {
 pub fn run() {
     println!("Select temperature unit to convert FROM:");
     show_temperature_units();
-    let from_unit: i32 = input::get_numeric_input("Your choice:", true, 0, 2);
+    let from_unit: i32 = input::get_single_integer("Your choice:", true, 0, 2);
 
     println!("Select temperature unit to convert TO:");
     show_temperature_units();
-    let to_unit: i32 = input::get_numeric_input("Your choice:", true, 0, 2);
+    let to_unit: i32 = input::get_single_integer("Your choice:", true, 0, 2);
 
     println!("Enter value to convert:");
-    let value: f32 = input::get_numeric_input("Value:", false, -1, -1) as f32;
+    let value: f32 = input::get_single_integer("Value:", false, -1, -1) as f32;
     let mut converted_value = 0.0;
 
     if from_unit == to_unit {
