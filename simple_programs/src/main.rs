@@ -1,10 +1,16 @@
-use std::io;
-use rand::Rng;
-
 pub mod input;
 pub mod functions;
 
-const MENU_OPTIONS: [&str; 8] = ["Exit", "Guess the number", "Convert temperature", "Generate n-th Fibonacci number", "Print Christmas Carol Lyrics", "Reverse string", "Find median of integers", "Find mode of integers"];
+const MENU_OPTIONS: [&str; 8] = [
+    "Exit",
+    "Guess the number",
+    "Convert temperature",
+    "Generate n-th Fibonacci number",
+    "Print Christmas Carol Lyrics",
+    "Reverse string",
+    "Find median of integers",
+    "Find mode of integers"
+ ];
 
 fn main() {
     loop {
