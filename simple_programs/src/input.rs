@@ -60,3 +60,13 @@ pub fn get_vec_of_integers(text: &str, sort: bool) -> Vec<i32> {
 
     return numbers;
 }
+
+pub fn get_simple_string(text: &str) -> String {
+    println!("{text}");
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Invalid input. Try again!");
+
+    return input;
+}

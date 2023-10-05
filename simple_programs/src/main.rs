@@ -1,7 +1,7 @@
 pub mod input;
 pub mod functions;
 
-const MENU_OPTIONS: [&str; 8] = [
+const MENU_OPTIONS: [&str; 9] = [
     "Exit",
     "Guess the number",
     "Convert temperature",
@@ -9,8 +9,9 @@ const MENU_OPTIONS: [&str; 8] = [
     "Print Christmas Carol Lyrics",
     "Reverse string",
     "Find median of integers",
-    "Find mode of integers"
- ];
+    "Find mode of integers",
+    "Minigrep"
+];
 
 fn main() {
     loop {
@@ -35,6 +36,8 @@ fn main() {
             functions::find_median_of_integers::run();
         } else if choice == 7 {
             functions::find_mode_of_integers::run();
+        } else if choice == 8 {
+            functions::minigrep::run();
         } else {
             println!("Invalid choice. Try again!")
         }
