@@ -1,5 +1,9 @@
+use dotenv::dotenv;
+
 pub mod input;
 pub mod functions;
+
+pub mod tests;
 
 const MENU_OPTIONS: [&str; 9] = [
     "Exit",
@@ -14,6 +18,8 @@ const MENU_OPTIONS: [&str; 9] = [
 ];
 
 fn main() {
+    dotenv().ok();
+
     loop {
         println!("Choose the program:");
         show_menu();
