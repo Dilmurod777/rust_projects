@@ -2,6 +2,24 @@ use std::fs;
 
 use crate::input;
 
+struct Config {
+    query: String,
+    file_path: String,
+}
+
+impl Config {
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone();
+        let file_path = args[2].clone();
+
+        Config {
+            query,
+            file_path,
+        }
+    }
+}
+
+
 pub fn run() {
     let command = input::get_simple_string("Enter command with following template: `minigrep searchstring filename.txt`");
     let parts: Vec<String> = command.trim().split_whitespace().map(str::to_string).collect();
@@ -17,15 +35,9 @@ pub fn run() {
         return;
     }
 
-    let search_str = &parts[1];
-    let filename = &parts[2];
+    let config = Config::new(&parts);
 
-    println!("Searching for {}", search_str);
-    println!("In file {}", filename);
-
-    let contents = fs::read_to_string(filename);
-
-    let contents = match contents {
+    let contents = match fs::read_to_string(config.file_path) {
         Err(_) => {
             println!("No such file found. Try again!");
             return;
